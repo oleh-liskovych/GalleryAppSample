@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">PicturesGallerySampleApp</string>
+
+    <string name="placeholder_picture_thumbnail">Picture</string>
 </resources>

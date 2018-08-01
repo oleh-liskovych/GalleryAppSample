@@ -1,8 +1,8 @@
 package com.olehliskovych.picturesgallerysampleapp.data.repository.remote
 
-class Resource<T> private constructor(private val status: State,
-                                      private val data: T?,
-                                      private val throwable: Throwable?) {
+class Resource<T> private constructor(val state: State,
+                                      val data: T?,
+                                      val throwable: Throwable?) {
 
 
     enum class State {

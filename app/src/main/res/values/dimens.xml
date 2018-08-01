@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="gallery_card_corner_radius">4dp</dimen>
+    <dimen name="gallery_card_margin">4dp</dimen>
+    <dimen name="gallery_avatar_picture_size">24dp</dimen>
+    <dimen name="gallery_item_margin_1">8dp</dimen>
+</resources>

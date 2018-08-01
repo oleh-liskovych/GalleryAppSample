@@ -4,16 +4,27 @@ import android.databinding.BindingAdapter
 import android.text.TextUtils
 import android.widget.ImageView
 import com.bumptech.glide.Glide
-import com.olehliskovych.picturesgallerysampleapp.global.SERVER_URL
-
+import com.bumptech.glide.request.RequestOptions
 
 @BindingAdapter("imageUrl")
-fun setImageUrl(view: ImageView, imageUrl: String) {
-    if (!TextUtils.isEmpty(imageUrl)) {
-        Glide.with(view.context)
-                .load(SERVER_URL + imageUrl)
-                .into(view)
+fun ImageView.setImageUrl(url: String?) {
+    if (!TextUtils.isEmpty(url)) {
+        Glide.with(context)
+                .load(url)
+                .into(this)
     } else {
-        view.setImageDrawable(null)
+        this.setImageDrawable(null)
+    }
+}
+
+@BindingAdapter("avatarUrl")
+fun ImageView.setAvatarUrl(url: String?) {
+    if (!TextUtils.isEmpty(url)) {
+        Glide.with(context)
+                .load(url)
+                .apply(RequestOptions.circleCropTransform())
+                .into(this)
+    } else {
+        this.setImageDrawable(null)
     }
 }

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <import type="com.olehliskovych.picturesgallerysampleapp.data.entity.PictureEntity"/>
@@ -8,15 +10,66 @@
             type="PictureEntity"/>
     </data>
 
-    <FrameLayout
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <ImageView
-            android:id="@+id/picture"
-            android:contentDescription="@string/placeholder_picture_thumbnail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            imageUrl="${pictureEntity.urls.thumb}"
-            />
-    </FrameLayout>
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/gallery_card_corner_radius"
+        android:layout_margin="@dimen/gallery_card_margin"
+        >
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/constraint_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/gallery_card_margin"
+            >
+
+            <ImageView
+                android:id="@+id/picture"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:contentDescription="@string/placeholder_picture_thumbnail"
+                android:scaleType="center"
+                app:imageUrl="@{pictureEntity.urls.thumb}"
+                app:layout_constraintDimensionRatio="1:1"
+                android:src="@drawable/ic_image_placeholder"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/avatar"
+                android:layout_width="@dimen/gallery_avatar_picture_size"
+                android:layout_height="@dimen/gallery_avatar_picture_size"
+                android:layout_marginBottom="@dimen/gallery_item_margin_1"
+                android:layout_marginStart="@dimen/gallery_item_margin_1"
+                android:layout_marginTop="@dimen/gallery_item_margin_1"
+                android:contentDescription="@string/content_description_avatar"
+                android:src="@drawable/ic_avatar_placeholder"
+                app:avatarUrl="@{pictureEntity.user.avatar.small}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/picture" />
+
+            <TextView
+                android:id="@+id/username"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:layout_marginStart="@dimen/gallery_item_margin_1"
+                android:layout_marginEnd="@dimen/gallery_item_margin_1"
+                app:layout_constraintBottom_toBottomOf="@+id/avatar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/avatar"
+                app:layout_constraintTop_toTopOf="@+id/avatar"
+                tools:text="Username"
+                android:text="@{pictureEntity.user.name}"
+                />
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+
+
 </layout>

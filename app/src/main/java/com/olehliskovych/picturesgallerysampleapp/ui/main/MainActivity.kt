@@ -1,40 +1,76 @@
 package com.olehliskovych.picturesgallerysampleapp.ui.main
 
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
+import android.databinding.DataBindingUtil
 import android.os.Bundle
+import android.view.View
+import android.widget.Toast
 import com.olehliskovych.picturesgallerysampleapp.R
 import com.olehliskovych.picturesgallerysampleapp.data.entity.PictureEntity
-import com.olehliskovych.picturesgallerysampleapp.data.repository.remote.UnsplashAPI
+import com.olehliskovych.picturesgallerysampleapp.data.repository.remote.Resource
+import com.olehliskovych.picturesgallerysampleapp.databinding.ActivityMainBinding
 import dagger.android.support.DaggerAppCompatActivity
-import retrofit2.Call
 import javax.inject.Inject
-import retrofit2.Callback
-import retrofit2.Response
 
-class MainActivity : DaggerAppCompatActivity(), Callback<List<PictureEntity>> {
-    override fun onFailure(call: Call<List<PictureEntity>>?, t: Throwable?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+class MainActivity : DaggerAppCompatActivity(), PicturesAdapter.PictureClickListener {
 
-    override fun onResponse(call: Call<List<PictureEntity>>?, response: Response<List<PictureEntity>>?) {
+    @Inject
+    protected lateinit var pictureAdapter: PicturesAdapter
 
-        val list = response?.body()
-        val iterator = list?.iterator()
-        iterator?.forEach {
-            println("$it \n")
-        }
+    @Inject
+    protected lateinit var factory: MainViewModelFactory
 
-    }
+    private lateinit var binding: ActivityMainBinding
 
-    @Inject lateinit var unsplashApi: UnsplashAPI
+    private lateinit var viewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        val response = unsplashApi.getPhotos(1, 10)
-        response.enqueue(this)
-
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        setSupportActionBar(binding.toolbar)
+        setupViewModel()
+        setupRecyclerView()
+        loadFirst()
+//        if (viewModel.currentPagePictures.value != null &&
+//                viewModel.currentPagePictures.value!!.data != null &&
+//                viewModel.currentPagePictures.value!!.data!!.size == 0) {
+//            loadFirst()
+//        }
     }
+
+    private fun loadFirst() {
+        viewModel.getPhotos()
+    }
+
+    private fun setupViewModel() {
+        viewModel = ViewModelProviders.of(this, factory).get(MainViewModel::class.java)
+        val listObserver: Observer<Resource<List<PictureEntity>>> = Observer {
+            when(it?.state) {
+                Resource.State.SUCCESS -> {
+                    if (it.data != null) {
+                        pictureAdapter.submitItems(it.data)
+                    }
+                }
+                Resource.State.LOADING -> {
+                    // show loading wheel
+                }
+                Resource.State.ERROR -> {
+                    // show error snackbar
+                }
+            }
+        }
+        viewModel.currentPagePictures.observe(this, listObserver)
+    }
+
+    private fun setupRecyclerView() {
+        binding.recycler.adapter = pictureAdapter
+    }
+
+    override fun onItemClick(view: View, adapterPos: Int) {
+        Toast.makeText(this, "Item: "+adapterPos, Toast.LENGTH_SHORT).show()
+    }
+
 
 
 }

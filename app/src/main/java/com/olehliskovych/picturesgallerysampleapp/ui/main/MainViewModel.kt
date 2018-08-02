@@ -1,44 +1,21 @@
 package com.olehliskovych.picturesgallerysampleapp.ui.main
 
-import android.arch.lifecycle.MutableLiveData
+import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.ViewModel
+import android.arch.paging.PagedList
 import com.olehliskovych.picturesgallerysampleapp.data.entity.PictureEntity
-import com.olehliskovych.picturesgallerysampleapp.data.repository.remote.Resource
-import kotlinx.coroutines.experimental.async
+import com.olehliskovych.picturesgallerysampleapp.data.repository.IMainRepository
+import com.olehliskovych.picturesgallerysampleapp.data.repository.remote.NetworkState
 import javax.inject.Inject
 
-class MainViewModel @Inject constructor(private var model: MainModel) : ViewModel() {
+class MainViewModel @Inject constructor(repository: IMainRepository) : ViewModel() {
 
-    private var page: Int = 1
-    private var count: Int = 20
-    var query: String = ""
+    val networkState: LiveData<NetworkState>?
+    val list: LiveData<PagedList<PictureEntity>>
 
-    //    private var wholePictureList: List<PictureEntity> = ArrayList()
-    var currentPagePictures: MutableLiveData<Resource<List<PictureEntity>>> = MutableLiveData()
-
-    fun getPhotos(){
-        currentPagePictures.postValue(Resource.loading())
-        async {
-            try {
-                val list = model.getPhotos(page, count)
-                currentPagePictures.postValue(Resource.success(list))
-            } catch (e: Exception) {
-                currentPagePictures.postValue(Resource.error(e))
-            }
-        }
-    }
-
-    fun getSearchedPhotos(){
-        currentPagePictures.postValue(Resource.loading())
-        async {
-            try {
-                val list = model.getSearchedPhotos(query, page, count)
-                Resource.success(list)
-                currentPagePictures.postValue(Resource.success(list))
-            } catch (e: Exception) {
-                currentPagePictures.postValue(Resource.error(e))
-            }
-        }
+    init {
+        networkState = repository.getNetworkState()
+        list = repository.getPictures()
     }
 
 }

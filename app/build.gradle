@@ -41,6 +41,7 @@ ext {
     GSON = '2.8.2'
     RETROFIT = '2.4.0'
     OKHTTP = '3.10.0'
+    PAGING = '1.0.1'
 }
 
 dependencies {
@@ -66,6 +67,7 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:${GLIDE}"
     kapt "com.github.bumptech.glide:compiler:${GLIDE}"
 
+    // GSON
     implementation "com.google.code.gson:gson:${GSON}"
 
     // Retrofit2
@@ -75,4 +77,8 @@ dependencies {
 
     implementation "com.squareup.okhttp3:logging-interceptor:${OKHTTP}"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:0.22.5"
+
+    // Paging
+    implementation "android.arch.paging:runtime:${PAGING}"
+
 }

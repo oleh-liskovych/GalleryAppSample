@@ -2,13 +2,14 @@ package com.olehliskovych.picturesgallerysampleapp.ui.main
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.arch.paging.PagedList
 import android.databinding.DataBindingUtil
 import android.os.Bundle
+import android.support.v4.widget.SwipeRefreshLayout
 import android.view.View
 import android.widget.Toast
 import com.olehliskovych.picturesgallerysampleapp.R
 import com.olehliskovych.picturesgallerysampleapp.data.entity.PictureEntity
-import com.olehliskovych.picturesgallerysampleapp.data.repository.remote.Resource
 import com.olehliskovych.picturesgallerysampleapp.databinding.ActivityMainBinding
 import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
@@ -31,40 +32,23 @@ class MainActivity : DaggerAppCompatActivity(), PicturesAdapter.PictureClickList
         setSupportActionBar(binding.toolbar)
         setupViewModel()
         setupRecyclerView()
-        loadFirst()
-//        if (viewModel.currentPagePictures.value != null &&
-//                viewModel.currentPagePictures.value!!.data != null &&
-//                viewModel.currentPagePictures.value!!.data!!.size == 0) {
-//            loadFirst()
-//        }
+
     }
 
-    private fun loadFirst() {
-        viewModel.getPhotos()
-    }
 
     private fun setupViewModel() {
         viewModel = ViewModelProviders.of(this, factory).get(MainViewModel::class.java)
-        val listObserver: Observer<Resource<List<PictureEntity>>> = Observer {
-            when(it?.state) {
-                Resource.State.SUCCESS -> {
-                    if (it.data != null) {
-                        pictureAdapter.submitItems(it.data)
-                    }
-                }
-                Resource.State.LOADING -> {
-                    // show loading wheel
-                }
-                Resource.State.ERROR -> {
-                    // show error snackbar
-                }
-            }
-        }
-        viewModel.currentPagePictures.observe(this, listObserver)
+        viewModel.list.observe(this, Observer<PagedList<PictureEntity>> {
+            pictureAdapter.submitList(it)
+        })
     }
 
     private fun setupRecyclerView() {
         binding.recycler.adapter = pictureAdapter
+        binding.swipeContainer.setOnRefreshListener { SwipeRefreshLayout.OnRefreshListener {
+
+        }
+        }
     }
 
     override fun onItemClick(view: View, adapterPos: Int) {

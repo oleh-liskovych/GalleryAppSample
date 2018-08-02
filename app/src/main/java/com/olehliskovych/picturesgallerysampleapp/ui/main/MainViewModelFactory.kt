@@ -2,12 +2,13 @@ package com.olehliskovych.picturesgallerysampleapp.ui.main
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
+import com.olehliskovych.picturesgallerysampleapp.data.repository.remote.MainRepository
 import javax.inject.Inject
 
 class MainViewModelFactory @Inject
-constructor(var model: MainModel) : ViewModelProvider.Factory {
+constructor(var repo: MainRepository) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return MainViewModel(model) as T
+        return MainViewModel(repo) as T
     }
 }

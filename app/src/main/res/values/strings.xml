@@ -3,4 +3,5 @@
 
     <string name="placeholder_picture_thumbnail">Picture thumbnail</string>
     <string name="content_description_avatar">Avatar</string>
+    <string name="empty_list_label">Sorry! Nothing to show…</string>
 </resources>

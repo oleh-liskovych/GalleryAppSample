@@ -17,12 +17,28 @@
             android:elevation="4dp"
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
 
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layoutManager="android.support.v7.widget.StaggeredGridLayoutManager"
                 app:spanCount="2" />
+
+            <TextView
+                android:id="@+id/empty_list_label"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/empty_list_label"
+                android:visibility="gone"
+                tools:visibility="visible"
+                />
+        </FrameLayout>
 
     </LinearLayout>
 </layout>

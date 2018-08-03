@@ -48,20 +48,20 @@ class MainRemoteDataSource @Inject constructor(
     }
 
     override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, PictureEntity>) {
-        networkState.postValue(NetworkState(NetworkState.State.LOADING))
-        async {
-            try {
-                val list = service.getPhotos(params.key, params.requestedLoadSize)
-                val response = list.execute()
-                if (response != null && response.isSuccessful && response.body() != null) {
-                    networkState.postValue(NetworkState(NetworkState.State.FAILED))
-                    print("loadBefore ITEMS RECEIVED: " + response.body()!!.size)
-                    callback.onResult(response.body()!!, params.key - 1)
-                }
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-        }
+//        networkState.postValue(NetworkState(NetworkState.State.LOADING))
+//        async {
+//            try {
+//                val list = service.getPhotos(params.key, params.requestedLoadSize)
+//                val response = list.execute()
+//                if (response != null && response.isSuccessful && response.body() != null) {
+//                    networkState.postValue(NetworkState(NetworkState.State.FAILED))
+//                    print("loadBefore ITEMS RECEIVED: " + response.body()!!.size)
+//                    callback.onResult(response.body()!!, params.key - 1)
+//                }
+//            } catch (e: Exception) {
+//                e.printStackTrace()
+//            }
+//        }
     }
 
 }

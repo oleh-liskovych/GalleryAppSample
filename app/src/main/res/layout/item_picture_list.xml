@@ -15,6 +15,7 @@
         android:layout_height="wrap_content"
         app:cardCornerRadius="@dimen/gallery_card_corner_radius"
         android:layout_margin="@dimen/gallery_card_margin"
+        android:background="?android:attr/selectableItemBackground"
         >
 
         <android.support.constraint.ConstraintLayout

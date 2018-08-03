@@ -16,7 +16,7 @@ import javax.inject.Inject
 class PicturesAdapter @Inject constructor(private val listener: PictureClickListener) : PagedListAdapter<PictureEntity, PicturesAdapter.ItemViewHolder>(DIFF_CALLBACK) {
 
     interface PictureClickListener {
-        fun onItemClick(view: View, adapterPos: Int)
+        fun onItemClick(view: View, item: PictureEntity)
     }
 
     companion object {
@@ -45,14 +45,11 @@ class PicturesAdapter @Inject constructor(private val listener: PictureClickList
 
         private val set = ConstraintSet()
 
-        init {
-            binding.root.setOnClickListener { view -> listener.onItemClick(view, adapterPosition) }
-        }
-
         fun bind(picture: PictureEntity) {
 
             binding.pictureEntity = picture
             binding.executePendingBindings()
+            binding.root.setOnClickListener { view -> listener.onItemClick(view, picture) }
 
             val ratio = String.format("%d:%d", picture.width, picture.height)
             set.clone(binding.constraintLayout)

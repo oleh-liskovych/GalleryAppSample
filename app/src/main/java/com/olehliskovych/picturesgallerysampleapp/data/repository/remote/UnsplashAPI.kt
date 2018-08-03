@@ -15,7 +15,7 @@ interface UnsplashAPI {
     @GET("/photos")
     fun getPhotos(@Query("page") page: Int?,
                   @Query("per_page") count: Int?,
-                  @Query("order_by") order_by: String = "popular") : Call<List<PictureEntity>>
+                  @Query("order_by") order_by: String = "latest") : Call<List<PictureEntity>>
 
     @GET("/search/photos")
     fun getSearchedPhotos(@Query("query") query: String,

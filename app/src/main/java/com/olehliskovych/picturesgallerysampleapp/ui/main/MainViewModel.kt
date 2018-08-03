@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModel
 import android.arch.paging.PagedList
 import com.olehliskovych.picturesgallerysampleapp.data.entity.PictureEntity
 import com.olehliskovych.picturesgallerysampleapp.data.repository.IMainRepository
+import com.olehliskovych.picturesgallerysampleapp.data.repository.remote.MainRemoteDataSource
 import com.olehliskovych.picturesgallerysampleapp.data.repository.remote.NetworkState
 import javax.inject.Inject
 

@@ -1,7 +1,9 @@
 package com.olehliskovych.picturesgallerysampleapp.data.repository.remote
 
 import android.arch.lifecycle.LiveData
+import android.arch.lifecycle.MediatorLiveData
 import android.arch.lifecycle.MutableLiveData
+import android.arch.lifecycle.Observer
 import android.arch.paging.LivePagedListBuilder
 import android.arch.paging.PagedList
 import com.olehliskovych.picturesgallerysampleapp.data.entity.PictureEntity
@@ -12,10 +14,17 @@ class MainRepository @Inject constructor(
         private val sourceFactory: MainRemoteDataSourceFactory
 ) : IMainRepository {
 
+    private val mediatorNetworkState = MediatorLiveData<NetworkState>()
+    private var currentNetworkStateLiveData : LiveData<NetworkState>? = null
+
+    init {
+        observeNetworkState()
+    }
+
     val config = PagedList.Config.Builder()
-            .setPageSize(15)
-            .setInitialLoadSizeHint(15)
-            .setPrefetchDistance(12)
+            .setPageSize(20)
+            .setInitialLoadSizeHint(20)
+            .setPrefetchDistance(15)
             .setEnablePlaceholders(false)
             .build()
 
@@ -26,8 +35,18 @@ class MainRepository @Inject constructor(
                         .build()
     }
 
-    override fun getNetworkState(): MutableLiveData<NetworkState>? {
-        return sourceFactory.sourceLiveData.value?.networkState // todo: replaced this with observe after moving to viewmodel
+    override fun getNetworkState(): LiveData<NetworkState>? {
+        return mediatorNetworkState
+    }
+
+    private fun observeNetworkState() {
+        sourceFactory.getDatasourceObservable().doOnNext {
+            item -> if (currentNetworkStateLiveData != null) {
+                mediatorNetworkState.removeSource(currentNetworkStateLiveData!!)
+            }
+            currentNetworkStateLiveData = item.networkState
+            mediatorNetworkState.addSource(currentNetworkStateLiveData!!, Observer { print("Source added") })
+        }.subscribe()
     }
 
 }

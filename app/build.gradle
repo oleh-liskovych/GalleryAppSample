@@ -42,6 +42,9 @@ ext {
     RETROFIT = '2.4.0'
     OKHTTP = '3.10.0'
     PAGING = '1.0.1'
+    rx_ANDROID = '2.0.2'
+    rx_JAVA = '2.1.10'
+    rx_KOTLIN = '2.1.0'
 }
 
 dependencies {
@@ -80,5 +83,10 @@ dependencies {
 
     // Paging
     implementation "android.arch.paging:runtime:${PAGING}"
+
+    // Rx
+    implementation "io.reactivex.rxjava2:rxandroid:${rx_ANDROID}"
+    implementation "io.reactivex.rxjava2:rxjava:${rx_JAVA}"
+    implementation "io.reactivex.rxjava2:rxkotlin:${rx_KOTLIN}"
 
 }

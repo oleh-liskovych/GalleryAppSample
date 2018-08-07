@@ -4,4 +4,9 @@
     <string name="placeholder_picture_thumbnail">Picture thumbnail</string>
     <string name="content_description_avatar">Avatar</string>
     <string name="empty_list_label">Sorry! Nothing to show…</string>
+    <string name="toolbar_hint_search">Search&#8230;</string>
+
+    <string name="error_message">Something went wrong&#8230;</string>
+    <string name="error_action">Refresh</string>
+    <string name="preview_content_description">Photo by %1$s</string>
 </resources>

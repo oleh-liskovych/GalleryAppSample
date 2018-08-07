@@ -2,8 +2,6 @@ package com.olehliskovych.picturesgallerysampleapp.data.repository.remote
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MediatorLiveData
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.Observer
 import android.arch.paging.LivePagedListBuilder
 import android.arch.paging.PagedList
 import com.olehliskovych.picturesgallerysampleapp.data.entity.PictureEntity
@@ -35,7 +33,7 @@ class MainRepository @Inject constructor(
                         .build()
     }
 
-    override fun getNetworkState(): LiveData<NetworkState>? {
+    override fun getNetworkState(): LiveData<NetworkState> {
         return mediatorNetworkState
     }
 
@@ -45,8 +43,17 @@ class MainRepository @Inject constructor(
                 mediatorNetworkState.removeSource(currentNetworkStateLiveData!!)
             }
             currentNetworkStateLiveData = item.networkState
-            mediatorNetworkState.addSource(currentNetworkStateLiveData!!, Observer { print("Source added") })
+            mediatorNetworkState.addSource(currentNetworkStateLiveData!!) {
+                mediatorNetworkState.postValue(it)
+            }
         }.subscribe()
+    }
+
+    override fun newPicturesRequest(query: String) {
+        sourceFactory.newPicturesRequest(query)
+        if (currentNetworkStateLiveData != null) {
+                mediatorNetworkState.removeSource(currentNetworkStateLiveData!!)
+        }
     }
 
 }

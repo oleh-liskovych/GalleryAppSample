@@ -5,21 +5,31 @@ class NetworkState(val state: NetworkState.State,
 
     enum class State {
         LOADING,
-        SUCCEEDED,
-        FAILED
+        SUCEESS,
+        EMPTY,
+        ERROR
+    }
+
+    override fun toString(): String {
+        return state.name
     }
 
     companion object {
         fun loading(): NetworkState {
+
             return NetworkState(NetworkState.State.LOADING)
         }
 
         fun success(): NetworkState {
-            return NetworkState(NetworkState.State.SUCCEEDED)
+            return NetworkState(NetworkState.State.SUCEESS)
+        }
+
+        fun empty(): NetworkState {
+            return NetworkState(NetworkState.State.EMPTY)
         }
 
         fun error(throwable: Throwable): NetworkState {
-            return NetworkState(NetworkState.State.FAILED, throwable)
+            return NetworkState(NetworkState.State.ERROR, throwable)
         }
     }
 }

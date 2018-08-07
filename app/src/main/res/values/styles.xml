@@ -12,6 +12,9 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
-        <!--<item name="statusBarColor">@color/colorPrimary</item>-->
+        
+    <style name="TransparentStatusBar" parent="AppTheme.NoActionBar">
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
 
 </resources>

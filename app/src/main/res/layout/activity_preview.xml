@@ -1,6 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-</FrameLayout>
+    <data>
+
+        <variable
+            name="entity"
+            type="com.olehliskovych.picturesgallerysampleapp.data.entity.PictureEntity" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        >
+
+        <com.olehliskovych.picturesgallerysampleapp.ui.custom.PincherView
+            android:id="@+id/image"
+            android:contentDescription="@{@string/preview_content_description(entity.user.name)}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitCenter"
+            android:background="@android:color/black"
+            app:bigImageUrl="@{entity.urls.raw}"
+            app:progress="@{progress}"
+            />
+            <!--app:imageUrl="@{entity.urls.raw}"-->
+
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            />
+
+    </FrameLayout>
+
+</layout>

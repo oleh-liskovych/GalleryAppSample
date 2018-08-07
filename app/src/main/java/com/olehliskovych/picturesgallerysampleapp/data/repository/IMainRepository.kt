@@ -7,5 +7,6 @@ import com.olehliskovych.picturesgallerysampleapp.data.repository.remote.Network
 
 interface IMainRepository {
     fun getPictures(query: String = "") : LiveData<PagedList<PictureEntity>>
-    fun getNetworkState() : LiveData<NetworkState>?
+    fun getNetworkState() : LiveData<NetworkState>
+    fun newPicturesRequest(query: String = "")
 }

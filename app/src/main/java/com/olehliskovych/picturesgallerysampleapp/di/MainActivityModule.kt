@@ -31,11 +31,6 @@ abstract class MainActivityModule {
     @Binds
     abstract fun bindMainRepository(mainRepository: MainRepository) : IMainRepository
 
-    @Deprecated(message = "delete after implementing paging")
-    @ActivityScope
-    @Binds
-    abstract fun bindMainModel(mainModel: MainModelImpl) : MainModel
-
     @ActivityScope
     @Binds
     abstract fun bindMainViewModel(mainViewModel: MainViewModel) : ViewModel

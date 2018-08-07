@@ -30,7 +30,6 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:contentDescription="@string/placeholder_picture_thumbnail"
-                android:scaleType="center"
                 app:imageUrl="@{pictureEntity.urls.thumb}"
                 app:layout_constraintDimensionRatio="1:1"
                 android:src="@drawable/ic_image_placeholder"

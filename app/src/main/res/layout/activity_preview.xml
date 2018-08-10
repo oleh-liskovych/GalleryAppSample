@@ -1,21 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".main.ui.preview.PreviewActivity">
 
     <data>
 
         <variable
             name="entity"
             type="com.olehliskovych.picturesgallerysampleapp.data.entity.PictureEntity" />
+
+        <variable
+            name="showButton"
+            type="Boolean"/>
+
+        <variable
+            name="fileExists"
+            type="Boolean"/>
     </data>
 
-    <FrameLayout
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
         >
 
-        <com.olehliskovych.picturesgallerysampleapp.ui.custom.PincherView
+        <com.olehliskovych.picturesgallerysampleapp.main.custom.PincherView
             android:id="@+id/image"
             android:contentDescription="@{@string/preview_content_description(entity.user.name)}"
             android:layout_width="match_parent"
@@ -25,15 +35,28 @@
             app:bigImageUrl="@{entity.urls.raw}"
             app:progress="@{progress}"
             />
-            <!--app:imageUrl="@{entity.urls.raw}"-->
 
         <ProgressBar
             android:id="@+id/progress"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="@dimen/progress_bar_size"
+            android:layout_height="@dimen/progress_bar_size"
             android:layout_gravity="center"
             />
 
-    </FrameLayout>
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            app:visibleOrGone="@{showButton}"
+            app:fileExists="@{fileExists}"
+            android:layout_marginStart="@dimen/preview_fab_margin"
+            android:layout_marginEnd="@dimen/preview_fab_margin"
+            android:layout_marginBottom="@dimen/preview_fab_margin_bottom"
+            android:onClick="buttonClick"
+            />
+
+    </android.support.design.widget.CoordinatorLayout>
+
 
 </layout>

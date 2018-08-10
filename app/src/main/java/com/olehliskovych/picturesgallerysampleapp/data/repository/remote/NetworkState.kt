@@ -5,7 +5,7 @@ class NetworkState(val state: NetworkState.State,
 
     enum class State {
         LOADING,
-        SUCEESS,
+        SUCCESS,
         EMPTY,
         ERROR
     }
@@ -21,7 +21,7 @@ class NetworkState(val state: NetworkState.State,
         }
 
         fun success(): NetworkState {
-            return NetworkState(NetworkState.State.SUCEESS)
+            return NetworkState(NetworkState.State.SUCCESS)
         }
 
         fun empty(): NetworkState {

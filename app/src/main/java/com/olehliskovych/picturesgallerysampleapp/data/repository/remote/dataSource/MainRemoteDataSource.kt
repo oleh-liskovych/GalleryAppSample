@@ -1,10 +1,11 @@
-package com.olehliskovych.picturesgallerysampleapp.data.repository.remote
+package com.olehliskovych.picturesgallerysampleapp.data.repository.remote.dataSource
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.paging.PageKeyedDataSource
 import com.olehliskovych.picturesgallerysampleapp.data.entity.PictureEntity
+import com.olehliskovych.picturesgallerysampleapp.data.repository.remote.NetworkState
+import com.olehliskovych.picturesgallerysampleapp.data.repository.remote.UnsplashAPI
 import kotlinx.coroutines.experimental.async
-import retrofit2.Call
 import javax.inject.Inject
 
 class MainRemoteDataSource @Inject constructor(

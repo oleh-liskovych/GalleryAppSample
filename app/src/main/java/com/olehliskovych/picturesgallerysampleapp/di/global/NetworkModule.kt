@@ -47,7 +47,6 @@ object NetworkModule {
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(client)
                 .build()
-//                .addCallAdapterFactory(RxJava2CallAdapterFactory.create()) // remove if is not needed
     }
 
     @JvmStatic
@@ -79,7 +78,7 @@ object NetworkModule {
     @Provides
     fun provideLoggingInterceptor(): HttpLoggingInterceptor {
         val interceptor = HttpLoggingInterceptor()
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
+        interceptor.level = HttpLoggingInterceptor.Level.BODY
         return interceptor
     }
 

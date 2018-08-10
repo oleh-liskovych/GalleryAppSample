@@ -5,7 +5,7 @@
     <data>
         <variable
             name="myView"
-            type="com.olehliskovych.picturesgallerysampleapp.ui.custom.SearchToolbar" />
+            type="com.olehliskovych.picturesgallerysampleapp.main.custom.SearchToolbar" />
     </data>
 
     <FrameLayout

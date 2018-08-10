@@ -1,11 +1,10 @@
-package com.olehliskovych.picturesgallerysampleapp.data.repository.remote
+package com.olehliskovych.picturesgallerysampleapp.data.repository.remote.dataSource
 
 import android.arch.paging.DataSource
-import android.util.Log
 import com.olehliskovych.picturesgallerysampleapp.data.entity.PictureEntity
+import com.olehliskovych.picturesgallerysampleapp.data.repository.remote.UnsplashAPI
 import io.reactivex.Observable
 import io.reactivex.subjects.BehaviorSubject
-import io.reactivex.subjects.PublishSubject
 import javax.inject.Inject
 
 class MainRemoteDataSourceFactory @Inject constructor(private val service: UnsplashAPI) : DataSource.Factory<Int, PictureEntity>() {

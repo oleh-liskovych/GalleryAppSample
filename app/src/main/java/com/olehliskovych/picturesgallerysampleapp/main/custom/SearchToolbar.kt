@@ -1,4 +1,4 @@
-package com.olehliskovych.picturesgallerysampleapp.ui.custom
+package com.olehliskovych.picturesgallerysampleapp.main.custom
 
 import android.arch.lifecycle.MutableLiveData
 import android.content.Context
@@ -8,7 +8,6 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
-import android.widget.Toast
 import com.olehliskovych.picturesgallerysampleapp.databinding.ToolbarSearchBinding
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable

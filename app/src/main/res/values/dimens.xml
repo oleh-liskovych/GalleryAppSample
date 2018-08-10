@@ -8,4 +8,14 @@
 
     <dimen name="toolbar_search_field_icons_size">16dp</dimen>
     <dimen name="toolbar_search_field_textSize">15sp</dimen>
+
+    <dimen name="progress_bar_size">50dp</dimen>
+    <dimen name="preview_actions_size">48dp</dimen>
+    <dimen name="preview_actions_padding">8dp</dimen>
+
+    <dimen name="preview_fab_margin">16dp</dimen>
+    <dimen name="preview_fab_margin_bottom">64dp</dimen>
+
+    <dimen name="navigation_bar_height">48dp</dimen>
+
 </resources>

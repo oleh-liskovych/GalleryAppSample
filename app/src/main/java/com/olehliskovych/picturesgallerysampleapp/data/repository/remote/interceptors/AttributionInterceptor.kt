@@ -10,13 +10,13 @@ class AttributionInterceptor : Interceptor {
         var request: Request = chain!!.request()
         val url: HttpUrl = request.url()
                 .newBuilder()
-                .addQueryParameter("utm_source", APP_NAME_ON_UNSPLAS)
+                .addQueryParameter("utm_source", APP_NAME_ON_UNSPLASH)
                 .build()
         request = request.newBuilder().url(url).build()
         return chain.proceed(request)
 
     }
     companion object {
-        private const val APP_NAME_ON_UNSPLAS = "MySampleApp"
+        private const val APP_NAME_ON_UNSPLASH = "MySampleApp"
     }
 }

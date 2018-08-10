@@ -2,14 +2,14 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.main.MainActivity">
+    tools:context=".main.ui.gallery.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <com.olehliskovych.picturesgallerysampleapp.ui.custom.SearchToolbar
+        <com.olehliskovych.picturesgallerysampleapp.main.custom.SearchToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -48,8 +48,8 @@
 
             <ProgressBar
                 android:id="@+id/progress"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="@dimen/progress_bar_size"
+                android:layout_height="@dimen/progress_bar_size"
                 android:layout_gravity="bottom |center_horizontal"
                 android:layout_marginBottom="30dp"
                 android:elevation="5dp" />

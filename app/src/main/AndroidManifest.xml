@@ -3,6 +3,10 @@
     package="com.olehliskovych.picturesgallerysampleapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SET_WALLPAPER"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
 
     <application
         android:allowBackup="true"
@@ -12,7 +16,7 @@
         android:supportsRtl="true"
         android:name=".App"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".ui.main.MainActivity">
+        <activity android:name="com.olehliskovych.picturesgallerysampleapp.main.ui.gallery.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,8 +24,10 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.preview.PreviewActivity"
+        <activity android:name="com.olehliskovych.picturesgallerysampleapp.main.ui.preview.PreviewActivity"
             android:theme="@style/TransparentStatusBar"/>
+
+        <service android:name=".services.DownloadService" />
 
     </application>
 

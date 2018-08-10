@@ -1,7 +1,8 @@
-package com.olehliskovych.picturesgallerysampleapp.ui.binding
+package com.olehliskovych.picturesgallerysampleapp.main.binding
 
 import android.databinding.BindingAdapter
 import android.graphics.drawable.Drawable
+import android.support.design.widget.FloatingActionButton
 import android.text.TextUtils
 import android.view.View
 import android.widget.ImageView
@@ -12,6 +13,7 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
+import com.olehliskovych.picturesgallerysampleapp.R
 
 @BindingAdapter("imageUrl")
 fun ImageView.setImageUrl(url: String?) {
@@ -57,4 +59,15 @@ fun ImageView.setAvatarUrl(url: String?) {
     } else {
         this.setImageDrawable(null)
     }
+}
+
+@BindingAdapter("visibleOrGone")
+fun View.visibleOrGone(visible: Boolean) {
+    visibility = if(visible) View.VISIBLE else View.GONE
+}
+
+@BindingAdapter("fileExists")
+fun FloatingActionButton.fileExists(fileExists: Boolean) {
+    val drawableRes = if(fileExists) R.drawable.ic_wallpaper else R.drawable.ic_download
+    setImageResource(drawableRes)
 }

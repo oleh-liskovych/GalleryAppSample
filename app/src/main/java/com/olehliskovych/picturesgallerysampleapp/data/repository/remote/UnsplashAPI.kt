@@ -2,16 +2,15 @@ package com.olehliskovych.picturesgallerysampleapp.data.repository.remote
 
 import com.olehliskovych.picturesgallerysampleapp.data.entity.PictureEntity
 import com.olehliskovych.picturesgallerysampleapp.data.entity.SearchResultEntity
+import okhttp3.ResponseBody
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface UnsplashAPI {
 
     companion object {
-        val BASE_URL = "https://api.unsplash.com"
+        const val BASE_URL = "https://api.unsplash.com"
     }
-
 
     @GET("/photos")
     fun getPhotos(@Query("page") page: Int?,
@@ -22,4 +21,7 @@ interface UnsplashAPI {
     fun getSearchedPhotos(@Query("query") query: String,
                           @Query("page") page: Int?,
                           @Query("per_page") count: Int?) : Call<SearchResultEntity>
+
+    @GET
+    fun getPicture(@Url url: String) : Call<ResponseBody>
 }

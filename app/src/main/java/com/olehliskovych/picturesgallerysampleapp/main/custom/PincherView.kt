@@ -1,6 +1,6 @@
 
 
-package com.olehliskovych.picturesgallerysampleapp.ui.custom
+package com.olehliskovych.picturesgallerysampleapp.main.custom
 
 import android.content.Context
 import android.graphics.Matrix
@@ -30,7 +30,7 @@ class PincherView @JvmOverloads constructor(
     private var last = PointF()
     private var start = PointF()
     private var minScale = 1f
-    private var maxScale = 6f
+    private var maxScale = 10f
     private var m: FloatArray = FloatArray(9)
 
     private var viewWidth: Int = 0

@@ -7,6 +7,16 @@
     <string name="toolbar_hint_search">Search&#8230;</string>
 
     <string name="error_message">Something went wrong&#8230;</string>
-    <string name="error_action">Refresh</string>
+    <string name="error_action_main">Refresh</string>
+    <string name="error_action_preview">Try Again</string>
+    <string name="success_action_preview">Set as wallpaper</string>
     <string name="preview_content_description">Photo by %1$s</string>
+    <string name="preview_content_description_download">Download</string>
+    <string name="preview_content_description_wallpaper">Set as wallpaper</string>
+    <string name="msg_downloading">Downloading</string>
+    <string name="msg_downloading_permission_denied">This feature doesn\'t work without permission</string>
+    <string name="msg_download_completed">Download completed</string>
+    <string name="msg_error_download_failed">Download failed</string>
+    <string name="notification_channel_id" translatable="false">default_channel</string>
+    <string name="notification_channel_name">Notification</string>
 </resources>

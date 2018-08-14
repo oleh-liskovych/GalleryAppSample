@@ -46,7 +46,7 @@ class MainRemoteDataSource @Inject constructor(
                         callback.onResult(response.body()!!.results, 1, 2)
                     }
                 }
-            } catch (e: Exception) {
+            } catch (e: Throwable) {
                 networkState.postValue(NetworkState.error(e))
                 e.printStackTrace()
             }
@@ -79,7 +79,6 @@ class MainRemoteDataSource @Inject constructor(
 
             } catch (e: Exception) {
                 networkState.postValue(NetworkState.error(e))
-                e.printStackTrace()
             }
         }
     }

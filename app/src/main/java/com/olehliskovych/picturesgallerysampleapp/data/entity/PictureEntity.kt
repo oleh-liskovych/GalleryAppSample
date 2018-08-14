@@ -35,13 +35,17 @@ data class PictureEntity(@Expose val id: String,
         return "PictureEntity(id='$id', width=$width, height=$height, urls=$urls, user=$user)"
     }
 
-    companion object CREATOR : Parcelable.Creator<PictureEntity> {
-        override fun createFromParcel(parcel: Parcel): PictureEntity {
-            return PictureEntity(parcel)
-        }
+    companion object {
 
-        override fun newArray(size: Int): Array<PictureEntity?> {
-            return arrayOfNulls(size)
+        @JvmStatic
+        val CREATOR = object: Parcelable.Creator<PictureEntity> {
+            override fun createFromParcel(parcel: Parcel): PictureEntity {
+                return PictureEntity(parcel)
+            }
+
+            override fun newArray(size: Int): Array<PictureEntity?> {
+                return arrayOfNulls(size)
+            }
         }
     }
 

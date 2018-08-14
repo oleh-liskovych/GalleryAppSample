@@ -9,7 +9,7 @@ data class SearchResultEntity(@Expose val total: Int,
 
     constructor(parcel: Parcel) : this(
             parcel.readInt(),
-            parcel.createTypedArrayList(PictureEntity)) {
+            parcel.createTypedArrayList(PictureEntity.CREATOR)) {
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {

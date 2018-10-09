@@ -33,6 +33,10 @@ android {
     }
 }
 
+androidExtensions {
+    experimental = true
+}
+
 ext {
     SUPPORT = '27.1.1'
     DAGGER = '2.16'
